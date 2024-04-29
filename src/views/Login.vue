@@ -3,6 +3,27 @@
     import {ref, onMounted} from 'vue';
     let email = ref('')
     let password = ref('')
+    let enailRules = [
+        value => {
+            if(value) return true
+            return 'E-mail is required.'
+        },
+        value => {
+          if (/.+@.+\..+/.test(value)) return true
+
+          return 'E-mail must be valid.'
+        }
+    ]
+    let passwordRules = [
+        value => {
+            if(value) return true;
+            return 'Password is required.'
+        },
+        value => {
+            if(value.length >= 8) return true
+            return 'Password should at least contain 8 charachters.'
+        }
+    ]
     const handleSubmit = () => {
         axios.post('http://127.0.0.1:5000/', {email: email.value, password: password.value})
         .then(res => {
@@ -25,7 +46,8 @@
                 <v-container>
                     <v-row>
                         <v-col md="3"></v-col>
-                        <v-col                     
+                        <v-col                 
+                        class="!tw-p-0 !tw-pl-4"             
                             cols="12"
                             md="6"
                             >
@@ -34,24 +56,23 @@
                     </v-row>
                     <v-row>
                         <v-col md="3"></v-col>
-                        <v-col                 
+                        <v-col     
+                        class="!tw-p-0 !tw-pl-4"             
                             cols="12"
                             md="6"
                             
                         >
                             <v-text-field
                             v-model="email"
-                            :counter="10"
-                            :rules="nameRules"
+                            :rules="enailRules"
                             label="Enter your email"
-                            hide-details
-                            required
                             ></v-text-field>
                         </v-col>
                     </v-row>
                     <v-row>
                         <v-col md="3"></v-col>
-                        <v-col                                            
+                        <v-col   
+                        class="!tw-p-0 !tw-pl-4"             
                             cols="12"
                             md="6"
                             >
@@ -60,18 +81,17 @@
                     </v-row>
                     <v-row>
                         <v-col md="3"></v-col>
-                        <v-col                                               
+                        <v-col    
+                        class="!tw-p-0 !tw-pl-4"             
                             cols="12"
                             md="6"
                             >
                             <v-text-field
                             v-model="password"
                             type="password"
-                            :counter="10"
-                            :rules="nameRules"
+                            :counter="8"
+                            :rules="passwordRules"
                             label="Enter your password"
-                            hide-details
-                            required
                             :type="show1 ? 'text' : 'password'"
                             ></v-text-field>
                         </v-col>
