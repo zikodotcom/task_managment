@@ -9,8 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-vue-grids": "^25.1.41",
+    "@syncfusion/ej2-vue-treegrid": "^25.1.41",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vuetify": "^3.5.17"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
